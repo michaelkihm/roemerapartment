@@ -22,7 +22,7 @@ export default function Header() {
           height={80}
           className="rounded-full"
         />
-        <h3 className="text-3xl font-bold px-2">Römer-Appartment</h3>
+        <h3 className="text-3xl font-bold px-2">Römer-Apartment</h3>
       </div>
 
       <div className="flex gap-2 pr-6">
