@@ -33,7 +33,7 @@ const textSections: string[] = [
 
 const reilImages = ["reil/1.jpg", "reil/2.jpg", "reil/3.jpg", "reil/4.jpg"];
 
-export default function Reil() {
+export default function ReilPage() {
   return (
     <div>
       <h2 className="font-bold text-4xl">Reil an der Mittelmosel</h2>

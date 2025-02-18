@@ -19,7 +19,12 @@ export default function RootLayout({
         <Providers>
           <div className="flex flex-col h-screen">
             <Header />
-            {children}
+            <div
+              className="p-2 flex flex-col gap-3 flex-grow overflow-y-auto"
+              id="content-container"
+            >
+              {children}
+            </div>
           </div>
         </Providers>
       </body>

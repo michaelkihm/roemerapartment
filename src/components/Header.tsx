@@ -4,7 +4,10 @@ import Image from "next/image";
 import { paths } from "@/paths";
 
 export default function Header() {
-  const menuItems = ["Appartment", "Reil", "Buchen"];
+  const menuItems: { name: string; url: string }[] = [
+    { name: "Unterkunft", url: paths.apartment() },
+    { name: "Reil", url: paths.reil() },
+  ];
 
   return (
     <div className="sticky z-40 top-0 inset-x-0 bg-green-700 flex justify-between p-4 items-center text-white">
@@ -23,8 +26,8 @@ export default function Header() {
 
       <div className="flex gap-2 pr-6">
         {menuItems.map((item) => (
-          <Link className="text-white" href={`#${item}`} key={item}>
-            {item}
+          <Link className="text-white" href={item.url} key={item.name}>
+            {item.name}
           </Link>
         ))}
       </div>

@@ -5,4 +5,10 @@ export const paths = {
   bookings() {
     return "/bookings";
   },
+  apartment() {
+    return "/";
+  },
+  reil() {
+    return "/reil";
+  },
 };

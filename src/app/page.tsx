@@ -1,16 +1,67 @@
-import Apartment from "@/components/Apartment";
-import Header from "@/components/Header";
-import Reil from "@/components/Reil";
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  Image,
+  RangeCalendar,
+} from "@heroui/react";
 
-export default function Home() {
+type ApartmentImage = {
+  name: string;
+  url: string;
+};
+
+export default function HomePage() {
+  const imgSize = 600;
+  const inside = ["Küche", "Schlafzimmer", "Wohnzimmer", "WLAN", "Smart TV"];
+  const images: ApartmentImage[] = [
+    { name: "Küche", url: "apartment/1.jpg" },
+    { name: "Schlafzimmer", url: "apartment/2.jpg" },
+    { name: "Facade", url: "apartment/3.jpg" },
+    { name: "Wohnzimmer", url: "apartment/4.jpg" },
+  ];
+
   return (
-    <div
-      className="p-2 flex flex-col gap-3 flex-grow overflow-y-auto"
-      id="content-container"
-    >
-      <Apartment />
-      <Reil />
-      <div id="Buchen" className="h-72 bg-blue-500"></div>
+    <div>
+      <div className="flex gap-2 flex-wrap justify-center">
+        <Card style={{ width: imgSize }} radius="md">
+          <CardHeader>
+            <h4 className="font-bold text-xl">Die Unterkunft</h4>
+          </CardHeader>
+          <CardBody className="flex flex-col gap-5">
+            <p>
+              Willkommen in unserem familienfreundlichen Ferienhaus mit Sauna
+              und Wellness-Bereich, direkt an der idyllischen Ahr gelegen und
+              nur 900 Meter von der historischen Altstadt Ahrweiler entfernt!
+              Genieße entspannte Stunden auf der Terrasse, erkunde die Weinberge
+              oder schlendere durch die charmante Altstad
+            </p>
+            <div className="py-2">
+              <h4 className="font-bold">Das bietet die Unterkunft</h4>
+              <ul className="list-disc gap-4 px-4">
+                {inside.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </CardBody>
+        </Card>
+        {images.map((image) => (
+          <Image
+            alt={image.name}
+            radius="md"
+            src={image.url}
+            width={imgSize}
+            height={imgSize}
+            isZoomed
+            key={image.url}
+          />
+        ))}
+      </div>
+      <div>
+        <p>Verfügbarkeit</p>
+        <RangeCalendar aria-label="Date (No Selection)" />
+      </div>
     </div>
   );
 }
