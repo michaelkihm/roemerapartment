@@ -1,23 +1,44 @@
 "use client";
 
 import { Input, RangeCalendar, RangeValue } from "@heroui/react";
-import { today, getLocalTimeZone, DateValue } from "@internationalized/date";
+import {
+  today,
+  getLocalTimeZone,
+  DateValue,
+  parseDate,
+} from "@internationalized/date";
 import { useState } from "react";
 import * as actions from "@/actions";
 
-export default function BookingForm() {
+export type BookingFormProps = {
+  bookings: {
+    id: number;
+    name: string;
+    from: Date;
+    to: Date;
+    email: string | null;
+  }[];
+};
+
+const dateToDate = (date: Date): DateValue =>
+  // Return in format "YYYY-MM-DD"
+  parseDate(date.toISOString().split("T")[0]);
+
+const timeZone = () => getLocalTimeZone();
+
+export default function BookingForm({ bookings }: BookingFormProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [range, setRange] = useState<RangeValue<DateValue>>({
-    start: today(getLocalTimeZone()),
-    end: today(getLocalTimeZone()),
+    start: today(timeZone()),
+    end: today(timeZone()),
   });
 
   const saveBooking = actions.createBooking.bind(
     null,
     name,
-    range!.start.toDate(getLocalTimeZone()),
-    range!.end.toDate(getLocalTimeZone()),
+    range!.start.toDate(timeZone()),
+    range!.end.toDate(timeZone()),
     email
   );
 
@@ -26,36 +47,57 @@ export default function BookingForm() {
     setRange(range);
   };
 
+  const disabledRanges: [DateValue, DateValue][] = bookings.map(
+    ({ from, to }) => [dateToDate(from), dateToDate(to)]
+  );
+
+  const isDateUnavailable = (date: DateValue) => {
+    return disabledRanges.some(
+      ([from, to]) => date.compare(from) >= 0 && date.compare(to) <= 0
+    );
+  };
+
   return (
-    <div className="p-2 flex flex-col gap-2 max-w-96 items-center">
-      <h3 className="font-bold">Buchung hinzufügen</h3>
-      <Input
-        variant="underlined"
-        label="Name"
-        placeholder="Name"
-        type="name"
-        value={name}
-        onValueChange={setName}
-      />
-      <Input
-        variant="underlined"
-        label="Email"
-        placeholder="Email"
-        type="email"
-        value={email}
-        onValueChange={setEmail}
-      />
+    <div className="p-2 flex flex-col gap-2 ">
+      <div className="flex lg:flex-row flex-col gap-2">
+        <Input
+          variant="underlined"
+          label="Name"
+          placeholder="Name"
+          type="name"
+          value={name}
+          onValueChange={setName}
+        />
+        <Input
+          variant="underlined"
+          label="Email"
+          placeholder="Email"
+          type="email"
+          value={email}
+          onValueChange={setEmail}
+        />
+      </div>
       <RangeCalendar
+        classNames={{
+          content: "lg:w-[930px] lg:h-[400px]",
+          base: "lg:w-[930px] rounded-sm",
+          grid: "lg:w-[930px] lg:gap-4",
+          cell: "text-sm lg:w-32 lg:h-12 lg:border lg:border-0.5px lg:border-gray-300 data-[disabled=true]:bg-red-300",
+          cellButton:
+            "lg:w-32 lg:h-12 data-[unavailable=true]:text-red-400 rounded",
+          gridHeaderCell: "lg:w-32",
+        }}
         aria-label="Buchungszeit"
-        minValue={today(getLocalTimeZone())}
+        minValue={today(timeZone())}
         onChange={onRangeChange}
+        isDateUnavailable={isDateUnavailable}
       />
 
       <form action={saveBooking}>
         <button
           type="submit"
           disabled={!name || range.start.day === range.end.day}
-          className="w-96 bg-green-600 text-white rounded-lg p-2 hover:bg-green-500 disabled:bg-gray-300"
+          className="lg:w-96 bg-green-600 text-white rounded-lg p-2 hover:bg-green-500 disabled:bg-gray-300"
         >
           Hinzufügen
         </button>
