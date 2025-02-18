@@ -1,10 +1,10 @@
 -- CreateTable
 CREATE TABLE "Bookings" (
     "id" SERIAL NOT NULL,
-    "email" TEXT NOT NULL,
-    "name" TEXT,
-    "from" TIMESTAMP(3) NOT NULL,
-    "to" TIMESTAMP(3) NOT NULL,
+    "email" TEXT,
+    "name" TEXT NOT NULL,
+    "from" TEXT NOT NULL,
+    "to" TEXT NOT NULL,
 
     CONSTRAINT "Bookings_pkey" PRIMARY KEY ("id")
 );

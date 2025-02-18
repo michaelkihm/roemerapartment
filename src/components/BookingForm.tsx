@@ -14,15 +14,18 @@ export type BookingFormProps = {
   bookings: {
     id: number;
     name: string;
-    from: Date;
-    to: Date;
+    from: string;
+    to: string;
     email: string | null;
   }[];
 };
 
-const dateToDate = (date: Date): DateValue =>
-  // Return in format "YYYY-MM-DD"
-  parseDate(date.toISOString().split("T")[0]);
+const parseDateValue = (date: DateValue) => {
+  // parse date to string of type YYYY-MM-DD
+  const month = String(date.month).padStart(2, "0");
+  const day = String(date.day).padStart(2, "0");
+  return `${date.year}-${month}-${day}`;
+};
 
 const timeZone = () => getLocalTimeZone();
 
@@ -37,8 +40,8 @@ export default function BookingForm({ bookings }: BookingFormProps) {
   const saveBooking = actions.createBooking.bind(
     null,
     name,
-    range!.start.toDate(timeZone()),
-    range!.end.toDate(timeZone()),
+    parseDateValue(range!.start),
+    parseDateValue(range!.end),
     email
   );
 
@@ -48,7 +51,7 @@ export default function BookingForm({ bookings }: BookingFormProps) {
   };
 
   const disabledRanges: [DateValue, DateValue][] = bookings.map(
-    ({ from, to }) => [dateToDate(from), dateToDate(to)]
+    ({ from, to }) => [parseDate(from), parseDate(to)]
   );
 
   const isDateUnavailable = (date: DateValue) => {
@@ -87,7 +90,7 @@ export default function BookingForm({ bookings }: BookingFormProps) {
             "lg:w-32 lg:h-12 data-[unavailable=true]:text-red-400 rounded",
           gridHeaderCell: "lg:w-32",
         }}
-        aria-label="Buchungszeit"
+        aria-label="Date (International Calendar)"
         minValue={today(timeZone())}
         onChange={onRangeChange}
         isDateUnavailable={isDateUnavailable}

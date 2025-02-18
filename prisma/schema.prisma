@@ -14,9 +14,10 @@ datasource db {
 }
 
 model Bookings {
-  id    Int      @id @default(autoincrement())
+  id    Int     @id @default(autoincrement())
   email String?
+  // Date in format "YYYY-MM-DD"
   name  String
-  from  DateTime
-  to    DateTime
+  from  String
+  to    String
 }

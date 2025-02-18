@@ -14,12 +14,17 @@ import { redirect } from "next/navigation";
  */
 export const createBooking = async (
   name: string,
-  checkIn: Date,
-  checkOut: Date,
+  checkIn: string,
+  checkOut: string,
   email?: string
 ) => {
-  const booking = await db.bookings.create({
-    data: { name, email, from: checkIn, to: checkOut },
+  await db.bookings.create({
+    data: {
+      name,
+      email,
+      from: checkIn,
+      to: checkOut,
+    },
   });
 
   // navigate back to bookings page
