@@ -85,7 +85,7 @@ export default function BookingForm({ bookings }: BookingFormProps) {
           content: "lg:w-[930px] lg:h-[400px]",
           base: "lg:w-[930px] rounded-sm",
           grid: "lg:w-[930px] lg:gap-4",
-          cell: "text-sm lg:w-32 lg:h-12 lg:border lg:border-0.5px lg:border-gray-300 data-[disabled=true]:bg-red-300",
+          cell: "text-sm lg:w-32 lg:h-12 lg:border lg:border-0.5px lg:border-gray-300",
           cellButton:
             "lg:w-32 lg:h-12 data-[unavailable=true]:text-red-400 rounded",
           gridHeaderCell: "lg:w-32",
