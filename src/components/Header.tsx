@@ -1,11 +1,4 @@
-import {
-  Button,
-  Link,
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-} from "@heroui/react";
+import { Link } from "@heroui/react";
 import brandImage from "public/headerbrand.png";
 import Image from "next/image";
 
@@ -27,7 +20,7 @@ export default function Header() {
 
       <div className="flex gap-2 pr-6">
         {menuItems.map((item) => (
-          <Link className="text-white" href={`#${item}`}>
+          <Link className="text-white" href={`#${item}`} key={item}>
             {item}
           </Link>
         ))}

@@ -38,13 +38,21 @@ export default function Reil() {
     <div>
       <h2 className="font-bold text-4xl">Reil an der Mittelmosel</h2>
       <div className="flex flex-col gap-2">
-        {textSections.map((text) => (
-          <p>{text}</p>
+        {textSections.map((text, i) => (
+          <p key={i}>{text}</p>
         ))}
       </div>
       <div className="flex flex-wrap gap-4">
         {reilImages.map((image) => (
-          <Image radius="md" src={image} width={600} height={600} isZoomed />
+          <Image
+            alt="Reil"
+            key={image}
+            radius="md"
+            src={image}
+            width={600}
+            height={600}
+            isZoomed
+          />
         ))}
       </div>
     </div>

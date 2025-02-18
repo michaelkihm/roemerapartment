@@ -44,7 +44,7 @@ export default function Apartment() {
               <h4 className="font-bold">Das bietet die Unterkunft</h4>
               <ul className="list-disc gap-4 px-4">
                 {inside.map((item) => (
-                  <li>{item}</li>
+                  <li key={item}>{item}</li>
                 ))}
               </ul>
             </div>
@@ -57,6 +57,7 @@ export default function Apartment() {
             width={imgSize}
             height={imgSize}
             isZoomed
+            key={image.url}
           />
         ))}
       </div>
