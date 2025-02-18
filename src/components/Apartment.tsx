@@ -27,7 +27,7 @@ export default function Apartment() {
 
   return (
     <div>
-      <div className="flex gap-2 flex-wrap">
+      <div className="flex gap-2 flex-wrap justify-center">
         <Card style={{ width: imgSize }} radius="md">
           <CardHeader>
             <h4 className="font-bold text-xl">Die Unterkunft</h4>
@@ -52,6 +52,7 @@ export default function Apartment() {
         </Card>
         {images.map((image) => (
           <Image
+            alt={image.name}
             radius="md"
             src={image.url}
             width={imgSize}
