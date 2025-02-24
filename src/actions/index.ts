@@ -2,6 +2,7 @@
 
 import { db } from "@/db";
 import { paths } from "@/paths";
+import { BookingRequest } from "@/types";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -12,12 +13,12 @@ import { redirect } from "next/navigation";
  * @param checkOut - The check-out date for the booking.
  * @param email - (Optional) The email address of the person making the booking.
  */
-export const createBooking = async (
-  name: string,
-  checkIn: string,
-  checkOut: string,
-  email?: string
-) => {
+export const createBooking = async ({
+  name,
+  email,
+  checkIn,
+  checkOut,
+}: BookingRequest) => {
   await db.bookings.create({
     data: {
       name,
@@ -33,3 +34,4 @@ export const createBooking = async (
 };
 
 export const getBookings = async () => await db.bookings.findMany();
+

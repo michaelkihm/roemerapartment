@@ -37,13 +37,12 @@ export default function BookingForm({ bookings }: BookingFormProps) {
     end: today(timeZone()),
   });
 
-  const saveBooking = actions.createBooking.bind(
-    null,
+  const saveBooking = actions.createBooking.bind(null, {
     name,
-    parseDateValue(range!.start),
-    parseDateValue(range!.end),
-    email
-  );
+    checkIn: parseDateValue(range!.start),
+    checkOut: parseDateValue(range!.end),
+    email,
+  });
 
   const onRangeChange = (range: RangeValue<DateValue> | null) => {
     if (!range) return;
