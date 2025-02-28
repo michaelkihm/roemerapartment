@@ -38,6 +38,4 @@ jobs:
         env:  
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}  
           HEROKU_APP_NAME: roemer-app 
-        run: |  
-          git remote add heroku https://git.heroku.com/${{ env.HEROKU_APP_NAME }}.git  
-          git push heroku main 
+        run: git push heroku main 
