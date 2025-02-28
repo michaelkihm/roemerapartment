@@ -49,11 +49,11 @@ export const sendBookingRequest = async (request: Required<BookingRequest>) => {
       subject: "Buchungsanfrage Römerapartment Reil",
       text: `Hallo ${
         request.name
-      },\n\nVielen Dank für Ihre Buchungsanfrage vom ${parseToGermanDate(
+      },\n\nVielen Dank für Deine Buchungsanfrage vom ${parseToGermanDate(
         request.checkIn
       )} bis zum ${parseToGermanDate(
         request.checkOut
-      )}. Wir werden uns in Kürze bei Ihnen melden.\n\nMit freundlichen Grüßen,\nRömerapartment Reil`,
+      )}. Wir werden uns in Kürze bei Dir melden.\n\nMit freundlichen Grüßen,\nRömerapartment Reil.`,
     });
   } catch (error) {
     console.error(error);
