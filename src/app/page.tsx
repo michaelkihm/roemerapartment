@@ -27,28 +27,26 @@ export default async function HomePage() {
       <div className="flex items-center justify-center gap-2">
         <Image
           alt={images[0].name}
-          radius="md"
+          radius="none"
           src={images[0].url}
           width={imgSize * 2}
           height={imgSize}
-          isZoomed
         />
         <div className="flex flex-wrap gap-1">
           {images.slice(1).map((image) => (
             <Image
               alt={image.name}
-              radius="md"
+              radius="none"
               src={image.url}
               width={imgSize / 2}
               height={imgSize / 2}
-              isZoomed
               key={image.url}
             />
           ))}
         </div>
       </div>
 
-      <div className="w-8/12 self-start">
+      <div className="self-start lg:w-8/12">
         <p>
           Willkommen in unserem familienfreundlichen Ferienhaus mit Sauna und
           Wellness-Bereich, direkt an der idyllischen Ahr gelegen und nur 900
@@ -56,7 +54,7 @@ export default async function HomePage() {
           entspannte Stunden auf der Terrasse, erkunde die Weinberge oder
           schlendere durch die charmante Altstad
         </p>
-        <div className="flex gap-24 py-2">
+        <div className="flex flex-col gap-24 py-2 lg:flex-row">
           <div>
             <h4 className="font-bold">Das bietet die Unterkunft</h4>
             <ul className="list-disc gap-4 px-4">

@@ -22,7 +22,6 @@ export default function BookingCalender({ bookings }: BookingCalenderProps) {
         base: "rounded-none",
         cellButton: "data-[unavailable=true]:text-red-400",
       }}
-      visibleMonths={3}
       aria-label="Date (No Selection)"
       isDateUnavailable={isDateUnavailable}
       minValue={today(getLocalTimeZone())}
