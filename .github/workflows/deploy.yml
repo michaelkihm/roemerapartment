@@ -32,10 +32,15 @@ jobs:
       - name: Build the project  
         env:  
           DATABASE_URL: ${{ secrets.DATABASE_URL }}  
-        run: npm run build  
+        run: npm run build
+      
+      - uses: actions/checkout@v2
+      - name: Install Heroku CLI 
+        run: |
+          curl https://cli-assets.heroku.com/install.sh | sh 
+      - uses: akhileshns/heroku-deploy@v3.14.15 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "roemer-app" 
+          heroku_email: "michael.kihm@web.de"
   
-      - name: Deploy to Heroku  
-        env:  
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}  
-          HEROKU_APP_NAME: roemer-app 
-        run: git push heroku main 
