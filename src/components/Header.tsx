@@ -18,15 +18,21 @@ export default function Header() {
             alt="Brand Image"
             width={80}
             height={80}
-            className="rounded-full"
+            className="h-10 w-10 rounded-full lg:h-20 lg:w-20"
           />
         </Link>
-        <h3 className="px-2 text-3xl font-bold">Römer-Apartment</h3>
+        <h3 className="px-1 text-lg font-bold lg:px-2 lg:text-3xl">
+          Römer-Apartment
+        </h3>
       </div>
 
       <div className="flex gap-2 pr-6">
         {menuItems.map((item) => (
-          <Link className="text-white" href={item.url} key={item.name}>
+          <Link
+            className="text-xs text-white lg:text-base"
+            href={item.url}
+            key={item.name}
+          >
             {item.name}
           </Link>
         ))}
