@@ -1,6 +1,6 @@
 "use client";
 import { Calendar, DateValue } from "@heroui/react";
-import { parseDate } from "@internationalized/date";
+import { getLocalTimeZone, parseDate, today } from "@internationalized/date";
 
 type BookingCalenderProps = {
   bookings: { from: string; to: string }[];
@@ -19,10 +19,13 @@ export default function BookingCalender({ bookings }: BookingCalenderProps) {
   return (
     <Calendar
       classNames={{
+        base: "rounded-none",
         cellButton: "data-[unavailable=true]:text-red-400",
       }}
+      visibleMonths={3}
       aria-label="Date (No Selection)"
       isDateUnavailable={isDateUnavailable}
+      minValue={today(getLocalTimeZone())}
     />
   );
 }
