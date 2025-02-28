@@ -8,8 +8,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter,
-  Button,
+  Spinner,
 } from "@heroui/react";
 import {
   DateValue,
@@ -31,6 +30,7 @@ export default function ClientBookingForm({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [range, setRange] = useState<RangeValue<DateValue> | null>();
+  const [sending, setSending] = useState(false);
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -62,15 +62,19 @@ export default function ClientBookingForm({
       checkOut: parseDateValue(range!.end),
       email,
     });
-
+    setSending(true);
     await sendBookingMail();
+    setSending(false);
     onOpen();
     resetForm();
   };
 
   return (
     <div className="flex flex-col gap-2">
-      <h2 className="font-bold text-xl">Buchung anfragen</h2>
+      <div className="flex gap-1">
+        <h2 className="font-bold text-xl">Buchung anfragen</h2>
+        {sending && <Spinner />}
+      </div>
       <Input
         isRequired
         errorMessage="Name ist erforderlich"
