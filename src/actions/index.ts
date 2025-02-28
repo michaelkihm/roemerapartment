@@ -6,6 +6,7 @@ import { BookingRequest } from "@/types";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { transport } from "@/mail";
+import { parseToGermanDate } from "@/utils/date";
 
 /**
  * Creates a booking with the given details and navigates back to booking page.
@@ -40,12 +41,21 @@ export const getBookings = async () => await db.bookings.findMany();
  * Sends a booking request email to the site owner.
  * @param request - The booking request details.
  */
-export const sendBookingRequest = async (request: BookingRequest) => {
-  console.log(process.env.EMAIL_USER);
-  await transport.sendMail({
-    from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER,
-    subject: "New booking request",
-    text: `New booking request from ${request.name} (${request.email}) for ${request.checkIn} to ${request.checkOut}`,
-  });
+export const sendBookingRequest = async (request: Required<BookingRequest>) => {
+  try {
+    await transport.sendMail({
+      from: process.env.EMAIL_USER,
+      to: request.email,
+      subject: "Buchungsanfrage Römerapartment Reil",
+      text: `Hallo ${
+        request.name
+      },\n\nVielen Dank für Ihre Buchungsanfrage vom ${parseToGermanDate(
+        request.checkIn
+      )} bis zum ${parseToGermanDate(
+        request.checkOut
+      )}. Wir werden uns in Kürze bei Ihnen melden.\n\nMit freundlichen Grüßen,\nRömerapartment Reil`,
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
