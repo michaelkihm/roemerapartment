@@ -102,7 +102,7 @@ export default function ClientBookingForm({
       <DateRangePicker
         isDateUnavailable={isDateUnavailable}
         label="Zeitraum"
-        // @ts-ignore comment
+        // @ts-expect-error works
         value={range}
         minValue={today(getLocalTimeZone())}
         variant="underlined"
