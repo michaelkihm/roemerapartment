@@ -2,6 +2,7 @@ import { Image } from "@heroui/react";
 import * as actions from "@/actions";
 
 import BookingCalender from "@/components/BookingCalender";
+import ClientBookingForm from "@/components/ClientBookingForm";
 
 type ApartmentImage = {
   name: string;
@@ -69,6 +70,7 @@ export default async function HomePage() {
             <BookingCalender bookings={bookings} />
           </div>
         </div>
+        <ClientBookingForm bookings={bookings} />
       </div>
     </div>
   );

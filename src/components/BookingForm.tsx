@@ -9,6 +9,7 @@ import {
 } from "@internationalized/date";
 import { useState } from "react";
 import * as actions from "@/actions";
+import { parseDateValue } from "@/utils/date";
 
 export type BookingFormProps = {
   bookings: {
@@ -18,13 +19,6 @@ export type BookingFormProps = {
     to: string;
     email: string | null;
   }[];
-};
-
-const parseDateValue = (date: DateValue) => {
-  // parse date to string of type YYYY-MM-DD
-  const month = String(date.month).padStart(2, "0");
-  const day = String(date.day).padStart(2, "0");
-  return `${date.year}-${month}-${day}`;
 };
 
 const timeZone = () => getLocalTimeZone();
@@ -37,13 +31,12 @@ export default function BookingForm({ bookings }: BookingFormProps) {
     end: today(timeZone()),
   });
 
-  const saveBooking = actions.createBooking.bind(
-    null,
+  const saveBooking = actions.createBooking.bind(null, {
     name,
-    parseDateValue(range!.start),
-    parseDateValue(range!.end),
-    email
-  );
+    checkIn: parseDateValue(range!.start),
+    checkOut: parseDateValue(range!.end),
+    email,
+  });
 
   const onRangeChange = (range: RangeValue<DateValue> | null) => {
     if (!range) return;
