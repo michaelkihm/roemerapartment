@@ -1,0 +1,40 @@
+name: Deploy to Heroku  
+  
+on:  
+  push:  
+    branches:  
+      - main  # Change this to your default branch if it's not 'main'  
+  
+jobs:  
+  build:  
+    runs-on: ubuntu-latest  
+  
+    steps:  
+      - name: Checkout code  
+        uses: actions/checkout@v2  
+  
+      - name: Set up Node.js  
+        uses: actions/setup-node@v2  
+        with:  
+          node-version: '22.2.0'  # Specify the Node.js version you are using  
+  
+      - name: Install dependencies  
+        run: npm install  
+  
+      - name: Build the project  
+        env:  
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}  
+        run: npm run build  
+  
+      - name: Run Prisma migrations  
+        env:  
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}  
+        run: npx prisma migrate deploy  
+  
+      - name: Deploy to Heroku  
+        env:  
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}  
+          HEROKU_APP_NAME: roemer-app 
+        run: |  
+          git remote add heroku https://git.heroku.com/${{ env.HEROKU_APP_NAME }}.git  
+          git push heroku main 
