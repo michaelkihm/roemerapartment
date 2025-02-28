@@ -32,6 +32,7 @@ export const createBooking = async ({
 
   // navigate back to bookings page
   revalidatePath(paths.bookings());
+  revalidatePath(paths.home());
   redirect(paths.bookings());
 };
 

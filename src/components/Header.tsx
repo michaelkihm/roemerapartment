@@ -5,7 +5,7 @@ import brandImage from "public/headerbrand.png";
 
 export default function Header() {
   const menuItems: { name: string; url: string }[] = [
-    { name: "Unterkunft", url: paths.apartment() },
+    { name: "Unterkunft", url: paths.home() },
     { name: "Reil", url: paths.reil() },
   ];
 
