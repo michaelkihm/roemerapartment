@@ -8,12 +8,12 @@ type BookingCalenderProps = {
 
 export default function BookingCalender({ bookings }: BookingCalenderProps) {
   const disabledRanges: [DateValue, DateValue][] = bookings.map(
-    ({ from, to }) => [parseDate(from), parseDate(to)]
+    ({ from, to }) => [parseDate(from), parseDate(to)],
   );
 
   const isDateUnavailable = (date: DateValue) => {
     return disabledRanges.some(
-      ([from, to]) => date.compare(from) >= 0 && date.compare(to) <= 0
+      ([from, to]) => date.compare(from) >= 0 && date.compare(to) <= 0,
     );
   };
   return (

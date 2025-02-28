@@ -16,5 +16,5 @@ export default {
       },
     },
   },
-  plugins: [heroui()],
+  plugins: [heroui(), "prettier-plugin-tailwindcss"],
 } satisfies Config;

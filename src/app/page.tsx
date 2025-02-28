@@ -1,5 +1,5 @@
-import { Image } from "@heroui/react";
 import * as actions from "@/actions";
+import { Image } from "@heroui/react";
 
 import BookingCalender from "@/components/BookingCalender";
 import ClientBookingForm from "@/components/ClientBookingForm";
@@ -23,8 +23,8 @@ export default async function HomePage() {
   const bookings = await actions.getBookings();
 
   return (
-    <div className="flex flex-col gap-4 items-center justify-center">
-      <div className="flex gap-2 justify-center items-center">
+    <div className="flex flex-col items-center justify-center gap-4">
+      <div className="flex items-center justify-center gap-2">
         <Image
           alt={images[0].name}
           radius="md"
@@ -56,7 +56,7 @@ export default async function HomePage() {
           entspannte Stunden auf der Terrasse, erkunde die Weinberge oder
           schlendere durch die charmante Altstad
         </p>
-        <div className=" flex gap-24 py-2">
+        <div className="flex gap-24 py-2">
           <div>
             <h4 className="font-bold">Das bietet die Unterkunft</h4>
             <ul className="list-disc gap-4 px-4">

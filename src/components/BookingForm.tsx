@@ -1,15 +1,15 @@
 "use client";
 
-import { Input, RangeCalendar, RangeValue } from "@heroui/react";
-import {
-  today,
-  getLocalTimeZone,
-  DateValue,
-  parseDate,
-} from "@internationalized/date";
-import { useState } from "react";
 import * as actions from "@/actions";
 import { parseDateValue } from "@/utils/date";
+import { Input, RangeCalendar, RangeValue } from "@heroui/react";
+import {
+  DateValue,
+  getLocalTimeZone,
+  parseDate,
+  today,
+} from "@internationalized/date";
+import { useState } from "react";
 
 export type BookingFormProps = {
   bookings: {
@@ -44,18 +44,18 @@ export default function BookingForm({ bookings }: BookingFormProps) {
   };
 
   const disabledRanges: [DateValue, DateValue][] = bookings.map(
-    ({ from, to }) => [parseDate(from), parseDate(to)]
+    ({ from, to }) => [parseDate(from), parseDate(to)],
   );
 
   const isDateUnavailable = (date: DateValue) => {
     return disabledRanges.some(
-      ([from, to]) => date.compare(from) >= 0 && date.compare(to) <= 0
+      ([from, to]) => date.compare(from) >= 0 && date.compare(to) <= 0,
     );
   };
 
   return (
-    <div className="p-2 flex flex-col gap-2 ">
-      <div className="flex lg:flex-row flex-col gap-2">
+    <div className="flex flex-col gap-2 p-2">
+      <div className="flex flex-col gap-2 lg:flex-row">
         <Input
           variant="underlined"
           label="Name"
@@ -93,7 +93,7 @@ export default function BookingForm({ bookings }: BookingFormProps) {
         <button
           type="submit"
           disabled={!name || range.start.day === range.end.day}
-          className="lg:w-96 bg-green-600 text-white rounded-lg p-2 hover:bg-green-500 disabled:bg-gray-300"
+          className="rounded-lg bg-green-600 p-2 text-white hover:bg-green-500 disabled:bg-gray-300 lg:w-96"
         >
           Hinzufügen
         </button>

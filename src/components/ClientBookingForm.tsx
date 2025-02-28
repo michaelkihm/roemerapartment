@@ -1,14 +1,16 @@
 "use client";
+import * as actions from "@/actions";
+import { parseDateValue } from "@/utils/date";
 import {
   DateRangePicker,
   Input,
-  RangeValue,
-  useDisclosure,
   Modal,
+  ModalBody,
   ModalContent,
   ModalHeader,
-  ModalBody,
+  RangeValue,
   Spinner,
+  useDisclosure,
 } from "@heroui/react";
 import {
   DateValue,
@@ -17,8 +19,6 @@ import {
   today,
 } from "@internationalized/date";
 import { useState } from "react";
-import * as actions from "@/actions";
-import { parseDateValue } from "@/utils/date";
 
 type ClientBookingFormProps = {
   bookings: { from: string; to: string }[];
@@ -35,11 +35,11 @@ export default function ClientBookingForm({
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const disabledRanges: [DateValue, DateValue][] = bookings.map(
-    ({ from, to }) => [parseDate(from), parseDate(to)]
+    ({ from, to }) => [parseDate(from), parseDate(to)],
   );
   const isDateUnavailable = (date: DateValue) => {
     return disabledRanges.some(
-      ([from, to]) => date.compare(from) >= 0 && date.compare(to) <= 0
+      ([from, to]) => date.compare(from) >= 0 && date.compare(to) <= 0,
     );
   };
 
@@ -72,7 +72,7 @@ export default function ClientBookingForm({
   return (
     <div className="flex flex-col gap-2">
       <div className="flex gap-1">
-        <h2 className="font-bold text-xl">Buchung anfragen</h2>
+        <h2 className="text-xl font-bold">Buchung anfragen</h2>
         {sending && <Spinner />}
       </div>
       <Input
@@ -118,7 +118,7 @@ export default function ClientBookingForm({
           disabled={
             !name || !email || !range || range.start.day === range.end.day
           }
-          className="rounded bg-slate-800 text-white p-2 max-w-60 disabled:bg-gray-400 hover:bg-slate-600"
+          className="max-w-60 rounded bg-slate-800 p-2 text-white hover:bg-slate-600 disabled:bg-gray-400"
           type="submit"
         >
           Buchung anfragen

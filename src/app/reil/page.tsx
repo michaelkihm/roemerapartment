@@ -36,7 +36,7 @@ const reilImages = ["reil/1.jpg", "reil/2.jpg", "reil/3.jpg", "reil/4.jpg"];
 export default function ReilPage() {
   return (
     <div>
-      <h2 className="font-bold text-4xl">Reil an der Mittelmosel</h2>
+      <h2 className="text-4xl font-bold">Reil an der Mittelmosel</h2>
       <div className="flex flex-col gap-2">
         {textSections.map((text, i) => (
           <p key={i}>{text}</p>

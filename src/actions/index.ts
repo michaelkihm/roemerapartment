@@ -1,12 +1,12 @@
 "use server";
 
 import { db } from "@/db";
+import { transport } from "@/mail";
 import { paths } from "@/paths";
 import { BookingRequest } from "@/types";
+import { parseToGermanDate } from "@/utils/date";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { transport } from "@/mail";
-import { parseToGermanDate } from "@/utils/date";
 
 /**
  * Creates a booking with the given details and navigates back to booking page.
@@ -50,9 +50,9 @@ export const sendBookingRequest = async (request: Required<BookingRequest>) => {
       text: `Hallo ${
         request.name
       },\n\nVielen Dank für Deine Buchungsanfrage vom ${parseToGermanDate(
-        request.checkIn
+        request.checkIn,
       )} bis zum ${parseToGermanDate(
-        request.checkOut
+        request.checkOut,
       )}. Wir werden uns in Kürze bei Dir melden.\n\nMit freundlichen Grüßen,\nRömerapartment Reil.`,
     });
   } catch (error) {

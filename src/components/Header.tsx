@@ -1,7 +1,7 @@
-import { Link } from "@heroui/react";
-import brandImage from "public/headerbrand.png";
-import Image from "next/image";
 import { paths } from "@/paths";
+import { Link } from "@heroui/react";
+import Image from "next/image";
+import brandImage from "public/headerbrand.png";
 
 export default function Header() {
   const menuItems: { name: string; url: string }[] = [
@@ -10,8 +10,8 @@ export default function Header() {
   ];
 
   return (
-    <div className="sticky z-40 top-0 inset-x-0 bg-green-700 flex justify-between p-4 items-center text-white">
-      <div className="flex gap-1 items-center">
+    <div className="sticky inset-x-0 top-0 z-40 flex items-center justify-between bg-green-700 p-4 text-white">
+      <div className="flex items-center gap-1">
         <Link href={paths.home()}>
           <Image
             src={brandImage}
@@ -21,7 +21,7 @@ export default function Header() {
             className="rounded-full"
           />
         </Link>
-        <h3 className="text-3xl font-bold px-2">Römer-Apartment</h3>
+        <h3 className="px-2 text-3xl font-bold">Römer-Apartment</h3>
       </div>
 
       <div className="flex gap-2 pr-6">
