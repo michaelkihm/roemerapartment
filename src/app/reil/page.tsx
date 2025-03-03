@@ -1,4 +1,8 @@
-import { Image } from "@heroui/react";
+import Image from "next/image";
+import reilImg1 from "public/reil/1.jpg";
+import reilImg2 from "public/reil/2.jpg";
+import reilImg3 from "public/reil/3.jpg";
+import reilImg4 from "public/reil/4.jpg";
 
 const textSections: string[] = [
   ` Reil ist ein malerisches Winzerdorf an der Mosel, das sich in
@@ -31,28 +35,22 @@ const textSections: string[] = [
     kennenlernen.`,
 ] as const;
 
-const reilImages = ["reil/1.jpg", "reil/2.jpg", "reil/3.jpg", "reil/4.jpg"];
+const reilImages = [reilImg1, reilImg3, reilImg2, reilImg4];
 
 export default function ReilPage() {
   return (
-    <div>
-      <h2 className="text-4xl font-bold">Reil an der Mittelmosel</h2>
-      <div className="flex flex-col gap-2">
+    <div className="p-2 sm:p-6 lg:p-9">
+      <h2 className="text-3xl font-bold sm:text-4xl">
+        Reil an der Mittelmosel
+      </h2>
+      <div className="flex flex-col gap-2 lg:w-[80%]">
         {textSections.map((text, i) => (
           <p key={i}>{text}</p>
         ))}
       </div>
-      <div className="flex flex-wrap gap-4">
-        {reilImages.map((image) => (
-          <Image
-            alt="Reil"
-            key={image}
-            radius="md"
-            src={image}
-            width={600}
-            height={600}
-            isZoomed
-          />
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:max-w-[70%]">
+        {reilImages.map((image, i) => (
+          <Image alt={image.src} key={image.src} src={image} width={600} />
         ))}
       </div>
     </div>

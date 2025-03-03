@@ -1,49 +1,52 @@
 import * as actions from "@/actions";
-import { Image } from "@heroui/react";
+import Image, { StaticImageData } from "next/image";
 
 import BookingCalender from "@/components/BookingCalender";
 import ClientBookingForm from "@/components/ClientBookingForm";
 
+import imgKitchen from "public/apartment/1.jpg";
+import imgBedroom from "public/apartment/2.jpg";
+import imgFacade from "public/apartment/3.jpg";
+import imgLiving from "public/apartment/4.jpg";
+import imgMain from "public/apartment/5.jpg";
+
 type ApartmentImage = {
   name: string;
-  url: string;
+  url: StaticImageData;
 };
 
 export default async function HomePage() {
   const imgSize = 600;
   const inside = ["Küche", "Schlafzimmer", "Wohnzimmer", "WLAN", "Smart TV"];
   const images: ApartmentImage[] = [
-    { name: "Main", url: "apartment/5.jpg" },
-    { name: "Küche", url: "apartment/1.jpg" },
-    { name: "Schlafzimmer", url: "apartment/2.jpg" },
-    { name: "Facade", url: "apartment/3.jpg" },
-    { name: "Wohnzimmer", url: "apartment/4.jpg" },
+    { name: "Main", url: imgMain },
+    { name: "Küche", url: imgKitchen },
+    { name: "Schlafzimmer", url: imgBedroom },
+    { name: "Facade", url: imgFacade },
+    { name: "Wohnzimmer", url: imgLiving },
   ];
 
   const bookings = await actions.getBookings();
 
   return (
     <div className="flex flex-col items-center justify-center gap-4">
-      <div className="flex items-center justify-center gap-2">
+      <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 sm:grid-rows-2 lg:grid-cols-4">
         <Image
+          className="lg:col-span-2 lg:row-span-2"
           alt={images[0].name}
-          radius="none"
           src={images[0].url}
           width={imgSize * 2}
           height={imgSize}
         />
-        <div className="flex flex-wrap gap-1">
-          {images.slice(1).map((image) => (
-            <Image
-              alt={image.name}
-              radius="none"
-              src={image.url}
-              width={imgSize / 2}
-              height={imgSize / 2}
-              key={image.url}
-            />
-          ))}
-        </div>
+        {images.slice(1).map((image) => (
+          <Image
+            alt={image.name}
+            src={image.url}
+            width={imgSize}
+            height={imgSize}
+            key={image.name}
+          />
+        ))}
       </div>
 
       <div className="self-start lg:w-8/12">
