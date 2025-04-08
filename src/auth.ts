@@ -24,7 +24,7 @@ export const {
     }),
   ],
   callbacks: {
-    async session({ session, user }: any) {
+    async session({ session, user }) {
       if (session && user) {
         session.user.id = user.id;
       }
