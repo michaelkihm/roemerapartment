@@ -1,16 +1,19 @@
+import { auth } from "@/auth";
 import { paths } from "@/paths";
 import { Link } from "@heroui/react";
 import Image from "next/image";
 import brandImage from "public/headerbrand.png";
 
-export default function Header() {
-  const menuItems: { name: string; url: string }[] = [
-    { name: "Unterkunft", url: paths.home() },
-    { name: "Reil", url: paths.reil() },
+export default async function Header() {
+  const session = await auth();
+  const menuItems: { name: string; url: string; auth: boolean }[] = [
+    { name: "Unterkunft", url: paths.home(), auth: false },
+    { name: "Reil", url: paths.reil(), auth: false },
+    { name: "Buchung", url: paths.bookings(), auth: true },
   ];
 
   return (
-    <div className="sticky inset-x-0 top-0 z-40 flex items-center justify-between bg-green-700 p-4 text-white">
+    <div className="sticky inset-x-0 top-0 z-40 flex items-center justify-between bg-green-700 p-2 text-white lg:p-4">
       <div className="flex items-center gap-1">
         <Link href={paths.home()}>
           <Image
@@ -27,15 +30,17 @@ export default function Header() {
       </div>
 
       <div className="flex gap-2 pr-6">
-        {menuItems.map((item) => (
-          <Link
-            className="text-xs text-white lg:text-base"
-            href={item.url}
-            key={item.name}
-          >
-            {item.name}
-          </Link>
-        ))}
+        {menuItems
+          .filter((item) => (item.auth ? (session?.user ? true : false) : true))
+          .map((item) => (
+            <Link
+              className="text-xs text-white lg:text-base"
+              href={item.url}
+              key={item.name}
+            >
+              {item.name}
+            </Link>
+          ))}
       </div>
     </div>
   );
