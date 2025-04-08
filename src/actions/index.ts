@@ -1,5 +1,6 @@
 "use server";
 
+import * as auth from "@/auth";
 import { db } from "@/db";
 import { transport } from "@/mail";
 import { paths } from "@/paths";
@@ -7,7 +8,6 @@ import { BookingRequest } from "@/types";
 import { parseToGermanDate } from "@/utils/date";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-
 /**
  * Creates a booking with the given details and navigates back to booking page.
  * @param name - The name of the person making the booking.
@@ -60,3 +60,11 @@ export const sendBookingRequest = async (request: Required<BookingRequest>) => {
     console.error(error);
   }
 };
+
+export async function signIn() {
+  return auth.signIn("github");
+}
+
+export async function signOut() {
+  return auth.signOut();
+}
