@@ -48,7 +48,7 @@ export default function ReilPage() {
           <p key={i}>{text}</p>
         ))}
       </div>
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:max-w-[70%]">
+      <div className="grid grid-cols-1 items-end gap-2 sm:grid-cols-2 lg:max-w-[70%]">
         {reilImages.map((image) => (
           <Image alt={image.src} key={image.src} src={image} width={600} />
         ))}
