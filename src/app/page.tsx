@@ -73,18 +73,33 @@ export default async function HomePage() {
             <h4 className="font-bold">Das bietet die Unterkunft</h4>
             <p className="py-2">
               Die Wohnung befindet sich im 1. Stock (ohne Aufzug). Die
-              Zimmeraufteilung ist wie folgt: - Schlafzimmer (Doppelbett 140cm)
-              mit Moselblick und ensuite Badezimmer mit Badewanne - Kombiniertes
-              Wohn-/ Schlafzimmer (Doppelbett 180cm) mit Moselblick, TV und
-              Sofaecke - Separates Badezimmer mit Dusche / WC - Küche mit
-              vollständiger Grundausstattung (Induktionskochfeld, Wasserkocher,
-              Filterkaffeemaschine, Backofen, Spülmaschine, großer Kühlschrank,
-              KEIN Eisfach) Esstisch und Zugang zur Terrasse - Terrasse mit
-              Blick auf die Weinberge Wir haben mit 2 jungen Familien das
-              Moselhaus gekauft um es nach und nach zu renovieren und dort in
-              der Zukunft selbst zu leben. Euch erwartet eine liebevoll
-              eingerichtete Wohnung mit Altbaucharme. Unterhalb der Wohnung, im
-              Erdgeschoss des Hauses, gibt es eine Pizzeria.
+              Zimmeraufteilung ist wie folgt:
+            </p>
+            <ul className="list-disc gap-4 px-4">
+              <li>
+                Schlafzimmer (Doppelbett 140cm) mit Moselblick und ensuite
+                Badezimmer mit Badewanne
+              </li>
+              <li>
+                Kombiniertes Wohn-/ Schlafzimmer (Doppelbett 180cm) mit
+                Moselblick, TV und Sofaecke
+              </li>
+              <li> Separates Badezimmer mit Dusche / WC</li>
+              <li>
+                Küche mit vollständiger Grundausstattung (Induktionskochfeld,
+                Wasserkocher, Filterkaffeemaschine, Backofen, Spülmaschine,
+                großer Kühlschrank, KEIN Eisfach) Esstisch und Zugang zur
+                Terrasse
+              </li>
+              <li>Terrasse mit Blick auf die Weinberge</li>
+            </ul>
+            <p className="py-1 font-bold">Über Uns</p>
+            <p>
+              Wir haben mit 2 jungen Familien das Moselhaus gekauft um es nach
+              und nach zu renovieren und dort in der Zukunft selbst zu leben.
+              Euch erwartet eine liebevoll eingerichtete Wohnung mit
+              Altbaucharme. Unterhalb der Wohnung, im Erdgeschoss des Hauses,
+              gibt es eine Pizzeria.
             </p>
           </div>
           <div>
