@@ -21,7 +21,6 @@ type ApartmentImage = {
 
 export default async function HomePage() {
   const imgSize = 600;
-  const inside = ["Küche", "Schlafzimmer", "Wohnzimmer", "WLAN", "Smart TV"];
   const images: ApartmentImage[] = [
     { name: "Main", url: imgMain },
     { name: "Küche", url: imgKitchen },
