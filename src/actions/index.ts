@@ -56,6 +56,14 @@ export const sendBookingRequest = async (request: Required<BookingRequest>) => {
         request.checkOut,
       )}. Wir werden uns in Kürze bei Dir melden.\n\nMit freundlichen Grüßen,\nRömerapartment Reil.`,
     });
+
+    await transport.sendMail({
+      from: process.env.EMAIL_USER,
+      to: "info.harikiri@gmail.com",
+      text: `Neue Buchungsanfrage von ${request.name}:\n- Mail: ${request.email}\n - Von ${parseToGermanDate(
+        request.checkIn,
+      )} bis ${parseToGermanDate(request.checkOut)}`,
+    });
   } catch (error) {
     console.error(error);
   }
